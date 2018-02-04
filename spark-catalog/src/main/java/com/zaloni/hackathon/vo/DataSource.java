@@ -1,4 +1,4 @@
-package com.zaloni.hackathon.zaloniautometadata.vo;
+package com.zaloni.hackathon.vo;
 
 
 import java.sql.Date;

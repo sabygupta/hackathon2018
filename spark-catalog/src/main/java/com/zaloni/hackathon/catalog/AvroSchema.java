@@ -1,13 +1,14 @@
 package com.zaloni.hackathon.catalog;
 
+import com.zaloni.hackathon.vo.Catalog;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SparkSession;
 
-public class AvroSchema implements Parser {
+public class AvroSchema extends Parser {
 
-    public boolean parse(String fileName) {
+    public Catalog parse(String fileName) {
 
         SparkSession sparkSession = SparkSession.builder()
                 .master("local")
@@ -24,6 +25,6 @@ public class AvroSchema implements Parser {
         df.printSchema();
         System.out.println((df.dtypes()[0])._1);
 
-        return false;
+        return convertToCatalog(df, fileName);
     }
 }

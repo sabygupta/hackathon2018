@@ -1,29 +1,28 @@
 package com.zaloni.hackathon.catalog;
 
+import com.zaloni.hackathon.vo.Catalog;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SparkSession;
 
-public class JsonSchema implements Parser {
+public class JsonSchema extends Parser {
 
-    public boolean parse(String fileName) {
+    public Catalog parse(String fileName) {
 
         SparkSession sparkSession = SparkSession.builder()
                 .master("local")
                 .appName("Json Schema Parser")
                 .getOrCreate();
+        Dataset<Row> df = sparkSession.read().json(fileName);
         SQLContext sqlContext = new SQLContext(sparkSession);
-        Dataset<Row> df =
+        /*Dataset<Row> df =
                 sqlContext
                         .read()
-                        .format("com.databricks.spark.csv")
-                        .option("header", "true")
-                        .option("inferSchema", "true")
-                        .load(fileName);
+                        .format("org.apache.spark.sql.json")
+                        .load(fileName);*/
         df.printSchema();
-        System.out.println((df.dtypes()[0])._1);
 
-        return false;
+        return convertToCatalog(df, fileName);
     }
 }

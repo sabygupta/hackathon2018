@@ -1,7 +1,7 @@
 package com.zaloni.hackathon.catalog;
 
+import com.zaloni.hackathon.vo.Catalog;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.util.Timer;
@@ -26,7 +26,7 @@ public class SchemaCrawler {
             @Override
             public void run() {
                 //Crawling code here
-
+                Catalog catalog;
                 System.out.println("crawler run started....");
 
                 File folder = new File(directoryPath);
@@ -39,12 +39,12 @@ public class SchemaCrawler {
 
                     switch (fileExtension.toLowerCase()) {
                         case "csv":
-                            System.out.println("csv file identified...");
-                            csvSchema.parse(fileName);
+                            catalog = csvSchema.parse(fileName);
+                            System.out.println("csv file identified ... & catlog: " + catalog.toString());
                             break;
                         case "json":
-                            System.out.println("json file identified...");
-                            //jsonSchema.parse("");
+                            catalog = jsonSchema.parse(fileName);
+                            System.out.println("json file identified ... & catlog: " + catalog.toString());
                             break;
                         case "avro":
                             System.out.println("avro file identified...");

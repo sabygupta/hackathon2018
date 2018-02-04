@@ -1,13 +1,19 @@
 package com.zaloni.hackathon.catalog;
 
+import com.zaloni.hackathon.vo.Catalog;
+import com.zaloni.hackathon.vo.CatalogFields;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SparkSession;
+import scala.Tuple2;
 
-public class CsvSchema implements Parser {
+import java.util.HashSet;
+import java.util.Set;
 
-    public boolean parse(String fileName) {
+public class CsvSchema extends Parser {
+
+    public Catalog parse(String fileName) {
 
         SparkSession sparkSession = SparkSession.builder()
                 .master("local")
@@ -22,8 +28,7 @@ public class CsvSchema implements Parser {
                         .option("inferSchema", "true")
                         .load(fileName);
         df.printSchema();
-        System.out.println((df.dtypes()[0])._1);
 
-        return false;
+        return convertToCatalog(df, fileName);
     }
 }
