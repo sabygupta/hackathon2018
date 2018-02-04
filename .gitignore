@@ -1,2 +1,5 @@
 .idea
 target
+hackathon2018.iml
+autometadata-gateway/zaloni-autometadata.iml
+spark-catalog/spark-catalog.iml
