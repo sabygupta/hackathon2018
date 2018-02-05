@@ -51,6 +51,37 @@ public class CatalogFields {
         return primary;
     }
 
+    public void setFieldId(int fieldId) {
+        this.fieldId = fieldId;
+    }
+
+    public void setFieldPosition(int fieldPosition) {
+        this.fieldPosition = fieldPosition;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setFieldDataType(String fieldDataType) {
+        this.fieldDataType = fieldDataType;
+    }
+
+    public void setDataScale(int dataScale) {
+        this.dataScale = dataScale;
+    }
+
+    public void setDataFormat(String dataFormat) {
+        this.dataFormat = dataFormat;
+    }
+
+    public void setPrimary(boolean primary) {
+        this.primary = primary;
+    }
 
     public static class CatalogFieldsBuilder {
 

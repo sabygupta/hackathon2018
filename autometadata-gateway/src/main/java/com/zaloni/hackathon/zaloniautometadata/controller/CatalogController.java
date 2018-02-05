@@ -25,4 +25,27 @@ public class CatalogController {
             return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
         }
     }
+
+    @RequestMapping(value = "/api/catalog", method = RequestMethod.GET, produces = "application/json")
+    public String getCatalogs() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(catalogService.getCatalogs());
+        } catch(Exception e)  {
+            return "Error";
+        }
+    }
+
+    @RequestMapping(value = "/api/catalog/{id}", method = RequestMethod.GET, produces = "application/json")
+    public String getCatalog(@PathVariable("id") int id) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Catalog c = catalogService.getCatalog(id);
+            return c != null?mapper.writeValueAsString(catalogService.getCatalog(id)):"{}";
+        } catch(Exception e)  {
+            return "Error";
+        }
+    }
+
+
 }
