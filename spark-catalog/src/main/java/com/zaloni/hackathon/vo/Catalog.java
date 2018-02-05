@@ -13,6 +13,9 @@ public class Catalog {
     private Date createdTime;
     private Set<CatalogFields> fields;
 
+    public Catalog() {
+    }
+
     public Catalog(CatalogBuilder catalogBuilder){
         this.id = catalogBuilder.id;
         this.name = catalogBuilder.name;
@@ -69,6 +72,7 @@ public class Catalog {
         private String createdBy;
         private Date createdTime;
         private Set<CatalogFields> fields;
+
 
         public CatalogBuilder(int id, int version, String name){
             this.id = id;

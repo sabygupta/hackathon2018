@@ -11,6 +11,10 @@ public class CatalogFields {
     private String dataFormat;
     private boolean primary;
 
+    public CatalogFields() {
+
+    }
+
     public CatalogFields(CatalogFieldsBuilder catalogFieldsBuilder) {
 
         this.fieldId = catalogFieldsBuilder.fieldId;
