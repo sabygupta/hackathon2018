@@ -23,6 +23,10 @@ public class JsonSchema extends Parser {
                         .load(fileName);*/
         df.printSchema();
 
-        return convertToCatalog(df, fileName);
+        Catalog catalog = convertToCatalog(df, fileName);
+
+        postToRestApi("http://localhost:9090/api/catalog", catalog);
+
+        return catalog;
     }
 }

@@ -83,6 +83,20 @@ public class CatalogFields {
         this.primary = primary;
     }
 
+    @Override
+    public String toString() {
+        return "CatalogFields{" +
+                "fieldId=" + fieldId +
+                ", fieldPosition=" + fieldPosition +
+                ", fieldName='" + fieldName + '\'' +
+                ", description='" + description + '\'' +
+                ", fieldDataType='" + fieldDataType + '\'' +
+                ", dataScale=" + dataScale +
+                ", dataFormat='" + dataFormat + '\'' +
+                ", primary=" + primary +
+                '}';
+    }
+
     public static class CatalogFieldsBuilder {
 
         private int fieldId;
@@ -94,9 +108,9 @@ public class CatalogFields {
         private String dataFormat;
         private boolean primary;
 
-        public CatalogFieldsBuilder(int fieldId, String fieldName) {
+        public CatalogFieldsBuilder(int fieldPosition, String fieldName) {
 
-            this.fieldId = fieldId;
+            this.fieldPosition = fieldPosition;
             this.fieldName = fieldName;
         }
 

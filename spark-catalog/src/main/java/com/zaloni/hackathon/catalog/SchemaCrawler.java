@@ -4,6 +4,7 @@ import com.zaloni.hackathon.vo.Catalog;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,7 +12,7 @@ public class SchemaCrawler {
 
     //spark-submit --class com.zaloni.hackathon.catalog.SchemaCrawler --master local[*] spark-catalog-1.0-SNAPSHOT.jar
     //java -cp uber-spark-catalog-1.0-SNAPSHOT.jar com.zaloni.hackathon.catalog.SchemaCrawler
-    static String directoryPath = "/root";
+    static String directoryPath = "/root/dropzone";
 
     public static void main(String[] args) throws Exception {
 
@@ -39,16 +40,16 @@ public class SchemaCrawler {
 
                     switch (fileExtension.toLowerCase()) {
                         case "csv":
-                            catalog = csvSchema.parse(fileName);
+                            catalog = csvSchema.parse(directoryPath + "/" + fileName);
                             System.out.println("csv file identified ... & catlog: " + catalog.toString());
                             break;
                         case "json":
-                            catalog = jsonSchema.parse(fileName);
+                            catalog = jsonSchema.parse(directoryPath + "/" + fileName);
                             System.out.println("json file identified ... & catlog: " + catalog.toString());
                             break;
                         case "avro":
                             System.out.println("avro file identified...");
-                            //avroSchema.parse("");
+                            //avroSchema.parse(directoryPath + "/" + fileName);
                             break;
                         default:
                             System.out.println("no match");

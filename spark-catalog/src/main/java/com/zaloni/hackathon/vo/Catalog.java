@@ -17,7 +17,6 @@ public class Catalog {
     }
 
     public Catalog(CatalogBuilder catalogBuilder){
-        this.id = catalogBuilder.id;
         this.name = catalogBuilder.name;
         this.fields = catalogBuilder.fields;
     }
@@ -93,7 +92,6 @@ public class Catalog {
 
     public static class CatalogBuilder {
 
-        private int id;
         private String name;
         private String description;
         private String dataSourceId;
@@ -102,18 +100,22 @@ public class Catalog {
         private Set<CatalogFields> fields;
 
 
-        public CatalogBuilder(int id, int version, String name){
-            this.id = id;
+        public CatalogBuilder(String name){
             this.name = name;
-        }
-
-        public CatalogBuilder Id(int id) {
-            this.id = id;
-            return this;
         }
 
         public CatalogBuilder Name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public CatalogBuilder Description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public CatalogBuilder DataSourceId(String dataSourceId) {
+            this.dataSourceId = dataSourceId;
             return this;
         }
 

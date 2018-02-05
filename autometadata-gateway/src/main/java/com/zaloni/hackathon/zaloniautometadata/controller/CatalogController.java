@@ -19,9 +19,11 @@ public class CatalogController {
     public ResponseEntity<String> addCatalog(@RequestBody Catalog catalog) {
         try {
 //            final Catalog catalog =	new ObjectMapper().readValue(catalogJSON, Catalog.class);
+            System.out.println("request received....");
             catalogService.addCatalog(catalog);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch(Exception e)  {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
         }
     }
@@ -32,6 +34,7 @@ public class CatalogController {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.writeValueAsString(catalogService.getCatalogs());
         } catch(Exception e)  {
+            e.printStackTrace();
             return "Error";
         }
     }
@@ -43,6 +46,7 @@ public class CatalogController {
             Catalog c = catalogService.getCatalog(id);
             return c != null?mapper.writeValueAsString(catalogService.getCatalog(id)):"{}";
         } catch(Exception e)  {
+            e.printStackTrace();
             return "Error";
         }
     }
